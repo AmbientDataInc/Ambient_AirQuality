@@ -65,13 +65,13 @@ void setup()
 
 void readCCS811()
 {
-    ccs811_wake();
+    ccs811_wake(); // CCS811をI2C通信可能にする。
     CO2 = 0;
     while (CO2 <= 400 || CO2 > 8192) { // CCS811 Datasheet よりCO2の値は400〜8192ppmとのことで、
                                        // それ以外の範囲の値を読み飛ばす
         long t = millis();
         
-        while (!ccs811.dataAvailable()) {
+        while (!ccs811.dataAvailable()) { // CCS811のデータが読み出し可能かチェックする。
             delay(100);
             long e = millis() - t;
             if ((e) > 3000) {
@@ -90,11 +90,11 @@ void readCCS811()
                 }
             }
         }
-        ccs811.readAlgorithmResults();
-        CO2 = ccs811.getCO2();
-        TVOC = ccs811.getTVOC();
+        ccs811.readAlgorithmResults(); // CO2とTVOCの値をCSS811から読み出す。
+        CO2 = ccs811.getCO2(); // CO2の値を取得する。
+        TVOC = ccs811.getTVOC(); // TVOCの値を取得する。
     }
-    ccs811_sleep();
+    ccs811_sleep(); // CCS811のI2C通信を停止する。
 }
 
 void loop()
