@@ -1,3 +1,7 @@
+/*
+ * modified for ESP8266 Arduino (modified lines are indicated with // modified by AmbientData)
+ * ESP8266 Ardino用に修正 (修正した行には次のコメントを付与 // modified by AmbientData)
+ */
 /******************************************************************************
 SparkFunCCS811.cpp
 CCS811 Arduino library
@@ -26,7 +30,7 @@ Distributed as-is; no warranty is given.
 
 //See SparkFunCCS811.h for additional topology notes.
 
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h> // modified by AmbientData
 #include "SparkFunCCS811.h"
 #include "stdint.h"
 
@@ -48,7 +52,7 @@ CCS811Core::status CCS811Core::beginCore(void)
 {
 	CCS811Core::status returnError = SENSOR_SUCCESS;
 
-//	Wire.begin();
+//	Wire.begin(); // modified by AmbientData
 
 #ifdef __AVR__
 #else
@@ -294,7 +298,7 @@ CCS811Core::status CCS811::begin( void )
 	{
 		return SENSOR_I2C_ERROR;
 	}	
-    delay(100);
+    delay(100); // modified by AmbientData
 
 	returnError = setDriveMode(1); //Read every second
 	
